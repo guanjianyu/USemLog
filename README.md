@@ -5,4 +5,6 @@ Semantic logger plugin for Unreal Engine
 
 	SemLog:Class,HelaCurryKetchup;LogType,Dynamic;
 
-# Development branch
+# v0.1
+
+Version used in SHERPA final review
