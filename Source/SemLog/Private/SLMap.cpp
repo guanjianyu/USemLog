@@ -18,7 +18,7 @@ USLMap::USLMap()
 	Filename = "SemanticMap.owl";
 
 	// Default log folder path
-	LogDirectoryPath = FPaths::GameDir() + "SemLog";
+	LogDirectoryPath = FPaths::ProjectDir() + "SemLog";
 
 	// Check if the semantic map already exists or not
 	bExists = USLMap::Exists();

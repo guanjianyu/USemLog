@@ -101,7 +101,7 @@ struct FSLEdToolkitStatics
 		IPlatformFile& PlatformFile = FPlatformFileManager::Get().GetPlatformFile();
 
 		// Create directory, return true if already exists
-		return PlatformFile.CreateDirectory(*FPaths::GameDir().Append("/").Append(DirectoryName));
+		return PlatformFile.CreateDirectory(*FPaths::ProjectDir().Append("/").Append(DirectoryName));
 	}
 
 	// Check if semantic map already exists
