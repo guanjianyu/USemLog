@@ -2,7 +2,6 @@
 // Author: Andrei Haidu (http://haidu.eu)
 
 #pragma once
-
 #include "CoreMinimal.h"
 #include "Toolkits/BaseToolkit.h"
 

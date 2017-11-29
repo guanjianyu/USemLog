@@ -80,8 +80,8 @@ void FSLEdModeToolkit::Init(const TSharedPtr<IToolkitHost>& InitToolkitHost)
 				[
 					SNew(SButton)
 					.Text(LOCTEXT("AddLevelInfo", "Add Level Info"))
-				.IsEnabled_Static(&FSLEdToolkitStatics::NoLevelInfoInTheWorld)
-				.OnClicked_Static(&FSLEdToolkitStatics::AddLevelinfo)
+					.IsEnabled_Static(&FSLEdToolkitStatics::NoLevelInfoInTheWorld)
+					.OnClicked_Static(&FSLEdToolkitStatics::AddLevelinfo)
 				]
 				+ SVerticalBox::Slot()
 				.AutoHeight()
