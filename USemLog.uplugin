@@ -24,5 +24,12 @@
       "Name": "SemLogEd",
       "Type": "Editor"
     }
-  ]
+  ],
+  "Plugins": [
+		{
+			"Name": "UTags",
+			"Enabled": true,
+			"MarketplaceURL": "http://robcog.org/"
+		}
+	]
 }
