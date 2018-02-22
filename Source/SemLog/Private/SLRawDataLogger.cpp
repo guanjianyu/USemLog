@@ -436,6 +436,34 @@ void USLRawDataLogger::AddComponentToJsonArray(
 		TSharedPtr<FJsonObject> JsonActorObj = USLRawDataLogger::CreateNameLocRotJsonObject(
 			UniqueNameAndLocation.UniqueName, CurrLocation * 0.01f, Component->GetComponentQuat());
 
+		// Check if actor is skeletal
+		if (USkeletalMeshComponent* CurrSkelMesh = Cast<USkeletalMeshComponent>(Component))
+		{
+			// Json array of bones
+			TArray<TSharedPtr<FJsonValue>> JsonBoneArr;
+
+			// Get bone names
+			TArray<FName> BoneNames;
+			CurrSkelMesh->GetBoneNames(BoneNames);
+
+			// Iterate through the bones of the skeletal mesh
+			for (const auto& BoneName : BoneNames)
+			{
+				// TODO black voodo magic crashes, bug report, crashes if this is not called before
+				CurrSkelMesh->GetBoneQuaternion(BoneName);
+
+				// Json bone object with name location and rotation
+				TSharedPtr<FJsonObject> JsonBoneObj = USLRawDataLogger::CreateNameLocRotJsonObject(
+					BoneName.ToString(), CurrSkelMesh->GetBoneLocation(BoneName) * 0.01f,
+					CurrSkelMesh->GetBoneQuaternion(BoneName));
+
+				// Add bone to Json array
+				JsonBoneArr.Add(MakeShareable(new FJsonValueObject(JsonBoneObj)));
+			}
+			// Add bones to Json actor
+			JsonActorObj->SetArrayField("bones", JsonBoneArr);
+		}
+
 		// Add actor to Json array
 		OutJsonArray.Add(MakeShareable(new FJsonValueObject(JsonActorObj)));
 	}
