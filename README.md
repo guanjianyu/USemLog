@@ -1,10 +1,12 @@
-# USemLog 
+![](Documentation/Img/SemLog.png)
+
+# USemLog
 
 Semantic logging plugin for Unreal Engine. Logs symbolic and sub-symbolic data to a KnowRob compatible format.
-	
-# v0.2
 
-Version used for ICRA18 with UTags as object descriptions and basic editor integration
+# Master brach
+
+Version with UTags as object descriptions and basic editor integration
 	
 # Usage:
 
@@ -22,11 +24,11 @@ Version used for ICRA18 with UTags as object descriptions and basic editor integ
     where
 
      `SemLog;` is the `TagType`
-	 
+
      `Class,HelaCurryKetchup;` - represents the semantic class of the object
-	 
+
      `Runtime,Dynamic;` - represents the raw logging type of the object (static or dynamic)
-	 
+
      `Id,gPP9;` - represents the unique ID for each entity to be logged
 
 # Rules:
@@ -49,12 +51,12 @@ Version used for ICRA18 with UTags as object descriptions and basic editor integ
 		...  
 		}  
 		);  
- 
+
  * Add an `ASLRuntimeManager` actor to your world
  * Enable `bBroadcastRawData` and `bLogEventData` in your `ASLRuntimeManager`;
  * The example actor (`ARawDataDelegateListener`) below subscribes to the broadcasted events and prints them to the log:
- 
-.h 
+
+.h
 ```cpp
 #pragma once
 
@@ -66,8 +68,8 @@ UCLASS()
 class ROBCOG_API ARawDataDelegateListener : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	ARawDataDelegateListener();
 
@@ -105,7 +107,7 @@ ARawDataDelegateListener::ARawDataDelegateListener()
 void ARawDataDelegateListener::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	// Iterate the runtime managers from the world
 	for (TActorIterator<ASLRuntimeManager>RMItr(GetWorld()); RMItr; ++RMItr)
 	{
@@ -141,4 +143,3 @@ void ARawDataDelegateListener::OnReceiveFinishedEventsData(const FString& EventD
 	UE_LOG(LogTemp, Warning, TEXT("Data: %s"), *EventData);
 }
 ```
- 
